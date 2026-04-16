@@ -1,12 +1,16 @@
-def surprising(L:list[str], other:str) -> list[str]:
-    L.append(other.upper())
-    return L
+def length_sum(L:list[str]) -> int:
+    if len(L) > 2:
+        result = len(L[0]) + len(L[1]) + len(L[2])    # For which call below is this statement evaluated. First
+    elif len(L) > 1:                                  #   and what are the values being added? 4 + 2 + 3
+        result = len(L[0]) + len(L[1])                # For which call below is this statement evaluated. First and Third
+    elif len(L) > 0:                                  #   and what are the values being added? 4 + 2 and 7 + 4
+        result = len(L[0])                            # For which call below is this statement evaluated. First, Second, and Third
+    else:                                             # and what are the values being added? 4, 10, and 7
+        result = 0
+    return result
 
 
-words = ["this", "is", "confusing", "code."]
-first = surprising(words, "Avoid")
-second = surprising(words, "such.")
-         # What is the value of words at this point? "this", "is", "confusing", "code."
-         # What are the values of first and second at this point? "words, Avoid" and "words, such."
-         # What happened? When first was call, Avoid became the last word, then when second was called, such. replaced Avoid as the last word
-print()   
+first = length_sum(["this", "is", "the", "first", "call"])
+second = length_sum(["second call"])
+third = length_sum(["another", "call"])
+print()
